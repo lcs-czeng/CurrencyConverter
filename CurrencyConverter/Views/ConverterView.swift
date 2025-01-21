@@ -12,7 +12,7 @@ struct ConverterView: View {
     //Stored properties
     
     @State var givenInput = ""
-
+    
     @State var feedback = ""
     
     @State var conversionsMade: [Int] = []
@@ -25,15 +25,29 @@ struct ConverterView: View {
     //Computed properties
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            VStack(spacing: 30) {
+                
+                Text("Conver your currency into another!")
+                
+                Text("CAD to USD")
+                    .font(.system(size: 30))
+                    .fontWeight(.bold)
+                
+                TextField("Amount of CAD", text: $givenInput)
+                
+                Text("\(givenInput) Canadian Dollar = ")
+                Text("US Dollars")
+                    .font(.system(size: 30))
+                    .fontWeight(.bold)
+                
+            }
+            .padding()
+            .navigationTitle("Currency Converter")
         }
     }
 }
-
-#Preview {
-    ConverterView()
-}
+    
+    #Preview {
+        ConverterView()
+    }
