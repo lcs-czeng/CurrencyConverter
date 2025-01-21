@@ -21,8 +21,10 @@ struct ConverterView: View {
     
     let usdToCad = 1.396
     
-    
     //Computed properties
+    
+    
+    
     
     var body: some View {
         NavigationStack {
@@ -36,7 +38,15 @@ struct ConverterView: View {
                 
                 TextField("Amount of CAD", text: $givenInput)
                 
+                Button {
+                    convertCurrency()
+                } label: {
+                    Text("Convert your money")
+                }
+                .buttonStyle(.borderedProminent)
+                
                 Text("\(givenInput) Canadian Dollar = ")
+                
                 Text("US Dollars")
                     .font(.system(size: 30))
                     .fontWeight(.bold)
@@ -46,8 +56,19 @@ struct ConverterView: View {
             .navigationTitle("Currency Converter")
         }
     }
-}
     
-    #Preview {
-        ConverterView()
+    //Functions
+    
+    func convertCurrency() {
+        
+        guard let amountOfCurrency = Double(givenInput) else {
+            feedback = "Please provide an integer."
+            return
+        }
+                
     }
+}
+
+#Preview {
+    ConverterView()
+}
