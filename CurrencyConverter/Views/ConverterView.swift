@@ -18,7 +18,7 @@ struct ConverterView: View {
     @State var convertedAmount = ""
     
     @State var conversionsMade: [Int] = []
-    
+        
     let cadToUsd = 0.698
     
     let usdToCad = 1.396
@@ -39,6 +39,11 @@ struct ConverterView: View {
                     .fontWeight(.bold)
                 
                 TextField("Amount of CAD", text: $givenInput)
+                
+                Text(feedback)
+                    .fontWeight(.bold)
+                    .font(.system(size: 25))
+                    .foregroundStyle(.red)
                 
                 Button {
                     convertCurrency()
@@ -68,11 +73,13 @@ struct ConverterView: View {
             convertedAmount = ""
             return
         }
-        
+            
         if amountOfCurrency < 0 {
             feedback = "Please enter positive number."
+        } else {
+            feedback = "Conversion Succeeded"
         }
-            
+    
         let result = amountOfCurrency * cadToUsd
         
         let formattedConvertedAmount = result.formatted(.number.precision(.fractionLength(2)))
