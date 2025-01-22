@@ -15,6 +15,8 @@ struct ConverterView: View {
     
     @State var feedback = ""
     
+    @State var convertedAmount = ""
+    
     @State var conversionsMade: [Int] = []
     
     let cadToUsd = 0.698
@@ -47,7 +49,7 @@ struct ConverterView: View {
                 
                 Text("\(givenInput) Canadian Dollar = ")
                 
-                Text("US Dollars")
+                Text("\(convertedAmount) US Dollars")
                     .font(.system(size: 30))
                     .fontWeight(.bold)
                 
@@ -62,10 +64,22 @@ struct ConverterView: View {
     func convertCurrency() {
         
         guard let amountOfCurrency = Double(givenInput) else {
-            feedback = "Please provide an integer."
+            feedback = "Please enter a valid number."
+            convertedAmount = ""
             return
         }
-                
+        
+        if amountOfCurrency < 0 {
+            feedback = "Please enter positive number."
+        }
+            
+        let result = amountOfCurrency * cadToUsd
+        
+        let formattedConvertedAmount = result.formatted(.number.precision(.fractionLength(2)))
+        
+        convertedAmount = String(formattedConvertedAmount)
+    
+        
     }
 }
 
