@@ -17,7 +17,7 @@ struct ConverterView: View {
     
     @State var convertedAmount = ""
     
-    @State var conversionsMade: [Double] = []
+    @State var conversionsMade: [Conversion] = []
     
     let cadToUsd = 0.698
     
@@ -95,6 +95,11 @@ struct ConverterView: View {
         let formattedConvertedAmount = result.formatted(.number.precision(.fractionLength(2)))
         
         convertedAmount = String(formattedConvertedAmount)
+        
+        let latestConversion = Conversion(cad: amountOfCurrency, usd: result)
+        
+        conversionsMade.append(latestConversion)
+
     
     }
     
@@ -104,6 +109,8 @@ struct ConverterView: View {
         
         feedback = ""
                 
+        conversionsMade.removeAll()
+        
         convertedAmount = ""
     }
 }
