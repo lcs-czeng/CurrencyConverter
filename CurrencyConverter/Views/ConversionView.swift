@@ -12,7 +12,19 @@ struct ConversionView: View {
     let somePriorConversion: Conversion
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        VStack {
+            
+            HStack {
+                
+                Text("\(somePriorConversion.cad.formatted(.number.precision(.fractionLength(2)))) CAD")
+                
+                Text("is")
+                
+                Text("\(somePriorConversion.usd.formatted(.number.precision(.fractionLength(2)))) USD")
+
+            }
+        }
     }
 }
 
