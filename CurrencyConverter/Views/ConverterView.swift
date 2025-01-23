@@ -20,14 +20,12 @@ struct ConverterView: View {
     @State var conversionsMade: [Conversion] = []
     
     let cadToUsd = 0.698
-    
-    let usdToCad = 1.396
-    
-    //Computed properties
+        
+    //View
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 30) {
+            VStack(spacing: 20) {
                 
                 Text("Conver your currency into another!")
                 
@@ -60,12 +58,12 @@ struct ConverterView: View {
                 Text("\(givenInput) Canadian Dollar = ")
                 
                 Text("\(convertedAmount) US Dollars")
-                    .font(.system(size: 30))
+                    .font(.system(size: 25))
                     .fontWeight(.bold)
                 
                 HStack {
                     Text("Conversion History")
-                        .font(.title)
+                        .font(.system(size: 30))
                         .fontWeight(.bold)
                     Spacer()
                 }
