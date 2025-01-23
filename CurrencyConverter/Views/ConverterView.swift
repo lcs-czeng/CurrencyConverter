@@ -17,8 +17,8 @@ struct ConverterView: View {
     
     @State var convertedAmount = ""
     
-    @State var conversionsMade: [Int] = []
-        
+    @State var conversionsMade: [Double] = []
+    
     let cadToUsd = 0.698
     
     let usdToCad = 1.396
@@ -52,6 +52,14 @@ struct ConverterView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 
+                Button {
+                    reset()
+                } label: {
+                    Text("Reset")
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(.red)
+                
                 Text("\(givenInput) Canadian Dollar = ")
                 
                 Text("\(convertedAmount) US Dollars")
@@ -76,6 +84,8 @@ struct ConverterView: View {
             
         if amountOfCurrency < 0 {
             feedback = "Please enter positive number."
+            convertedAmount = ""
+            return
         } else {
             feedback = "Conversion Succeeded"
         }
@@ -86,7 +96,15 @@ struct ConverterView: View {
         
         convertedAmount = String(formattedConvertedAmount)
     
+    }
+    
+    func reset() {
         
+        givenInput = ""
+        
+        feedback = ""
+                
+        convertedAmount = ""
     }
 }
 
