@@ -25,9 +25,6 @@ struct ConverterView: View {
     
     //Computed properties
     
-    
-    
-    
     var body: some View {
         NavigationStack {
             VStack(spacing: 30) {
@@ -66,6 +63,21 @@ struct ConverterView: View {
                     .font(.system(size: 30))
                     .fontWeight(.bold)
                 
+                HStack {
+                    Text("Conversion History")
+                        .font(.title)
+                        .fontWeight(.bold)
+                    Spacer()
+                }
+                
+                List(conversionsMade.reversed()) { currentConversion in
+                    HStack {
+                        Spacer()
+                        ConversionView(somePriorConversion: currentConversion)
+                        Spacer()
+                    }
+                    
+                }
             }
             .padding()
             .navigationTitle("Currency Converter")
